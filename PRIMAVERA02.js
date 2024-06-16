@@ -462,6 +462,6 @@ banca,
 banca1,
 mesh60,
 meshtexto01);
-PRIMAVERA02.position.set(x,y,x);
+PRIMAVERA02.position.set(x,y,z);
 return PRIMAVERA02;
 }

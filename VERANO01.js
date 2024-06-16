@@ -633,6 +633,6 @@ export default function VER01({x,y,z}){
         arbol9, 
         mesh80, 
         mesh81);
-    VERANO01.position.set(x,y,x);
+    VERANO01.position.set(x,y,z);
     return VERANO01;
 }
