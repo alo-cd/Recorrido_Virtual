@@ -1,0 +1,126 @@
+<!DOCTYPE html> 
+<!-- informa al navegador qué lenguaje se usó para escribir el documento. -->
+<html lang="en"> 
+<!--agregue un atributo lang a la etiqueta html para establecer el idioma por defecto de la página-->
+<head> 
+<!--Contiene la información general del documento (incluye título, scripts, y style)-->
+<meta charset="UTF-8" /> 
+<!--representa varios tipos de metadatos que no se pueden expresar utilizando los elementos
+     título, base, enlace, estilo y script.-->
+     <title>Recorrido virtual</title>
+     <!--Contiene el título-->
+     <style>
+        /*Da estilo al documento*/
+     </style>
+</head>
+<body>
+    <!--Representa el contenido de un documento HTML-->
+<canvas id="myCanvas">
+    <!--El elemento HTML canvas se puede utilizar para dibujar gráficos a través de 
+        secuencias de comandos (por lo general JavaScript ).-->
+</canvas>
+
+<!-- Aquí va todo el código de three.js -->
+<!-- script type="importmap" importa las librerías necesarias para three.js-->
+
+
+<script src= "./font/Stocky_Regular.js">
+</script>
+
+<script type="importmap">
+    {
+      "imports": {
+        "three": "./js/three.module.js",
+        "three/OrbitControls": "./js/OrbitControls.js"
+      }
+    }
+  </script>
+ <!-- Aquí va todo el código de three.js -->
+ <script type="module">
+    // 📚  Librerías importadas para hacer funcionar three.js y el OrbitControls y font
+  //💙nuevas librerias
+    import {TextGeometry} from "./js/TextGeometry.js";
+    import {FontLoader} from "./js/FontLoader.js";
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/OrbitControls';
+    import { RoundedBoxGeometry } from "./js/RoundedBoxGeometry.js"; 
+
+    import PRIMAVERA02 from "./js/PRIMAVERA02.js"
+    import VERANO01 from "./js/VERANO01.js"
+
+
+
+   //   console.log(OrbitControls);
+
+//🕹️🕹️ Renderer - Realiza una conexión entre el código y el canvas
+        var renderer = new THREE.WebGLRenderer({
+        canvas: document.getElementById('myCanvas'),
+        antialias: true,
+      });
+      renderer.setPixelRatio(window.decivePixelRatio);
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0xCB89FA);
+
+
+      // 🎬 Creando nueva escena - Es el espacio donde se colocan los objetos
+      var scene = new THREE.Scene();
+
+      var loader = new THREE.TextureLoader();
+      var bgTexture = loader.load ('./assets/concreto.jpg');
+      scene.background = bgTexture;
+
+      //🎥🎥 Agregar una cámara de perspectiva
+      var camera = new THREE.PerspectiveCamera(
+        70,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        5000
+      );
+      scene.add(camera);
+
+      //Settings de la cámara
+      camera.position.set(0, 20, 50);
+
+      // Añadiendo los OrbitControls
+      var controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+
+// Código para realizar objetos
+var gridHelper = new THREE.GridHelper (100,50);
+scene.add(gridHelper); 
+
+var axesHelper = new THREE.AxesHelper (25);
+scene.add(axesHelper);
+
+var light = new THREE.AmbientLight (0xffffff,0.5);
+scene.add(light); 
+
+///////////////////////
+
+const PRIMAVERA02 = PRIMAVERA02({x: 10, y:0, z:0});
+scene.add(PRIMAVERA02);
+
+const VERANO01 = VERANO01({x: -10, y:0, z:-10});
+scene.add(VERANO01);
+
+
+///////////////////
+
+ //🎰🎰Rendering y animación
+ requestAnimationFrame(render);
+      function render() {
+        
+
+      //🪄🪄 Animación - 
+      
+      //🎮🎮Actualización del OrbitControls para generar la suavidad de movimiento
+      controls.update();
+
+      //Llamado para renderizar y volver a llamar a la misma función (render)
+      renderer.render(scene, camera);
+      requestAnimationFrame(render);
+      }
+</script>
+</body>
+</html>
