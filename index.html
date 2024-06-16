@@ -24,7 +24,7 @@
 <!-- script type="importmap" importa las librerías necesarias para three.js-->
 
 
-<script src= "./font/Stocky_Regular.js">
+<script src= "font/Stocky_Regular.js">
 </script>
 
 <script type="importmap">
@@ -43,14 +43,14 @@
     import {FontLoader} from "./js/FontLoader.js";
     import * as THREE from 'three';
     import { OrbitControls } from 'three/OrbitControls';
-    import { RoundedBoxGeometry } from "./js/RoundedBoxGeometry.js"; 
+    import { RoundedBoxGeometry } from "./js/RoundedBoxGeometry.js";
 
-    import PRIMAVERA02 from "./js/PRIMAVERA02.js"
-    import VERANO01 from "./js/VERANO01.js"
+  
+    import V01 from "./js/VERANO01.js"
+    import P02 from "./js/PRIMAVERA02.js"
 
 
-
-   //   console.log(OrbitControls);
+      //console.log(OrbitControls);
 
 //🕹️🕹️ Renderer - Realiza una conexión entre el código y el canvas
         var renderer = new THREE.WebGLRenderer({
@@ -98,11 +98,11 @@ scene.add(light);
 
 ///////////////////////
 
-const PRIMAVERA02 = PRIMAVERA02({x: 10, y:0, z:0});
-scene.add(PRIMAVERA02);
+const   EV1 = V01({x: -10, y:0, z:-10});
+scene.add(EV1); 
 
-const VERANO01 = VERANO01({x: -10, y:0, z:-10});
-scene.add(VERANO01);
+const   EP2 = P02({x: 10, y:0, z:10});
+scene.add(EP2); 
 
 
 ///////////////////
